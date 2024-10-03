@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel ="stylesheet"type ="text/css" href="/did.css" title="did">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+         <h1>Coffee blog</h1>
+         
+                    <form action="success.html" method="GET">
+                                
+                                    
+                                       <strong> Название напитка</strong>
+                                        
+                                            <input type="text" id="text" name="title" placeholder="Американо">
+                                            <br>
+                                            <br>
+                                       
+                            <strong>Сорт кофе</strong>
+                                    
+                                        <select id ="text" name = 'sort'>
+                                            <label type = 'text'></label>
+                                            <option> Гватемало </option>
+                                            <option>Арабика</option>
+                                            <option>Робуста</option>
+                                            <option>Либерика</option>
+                                        </select>
+                                    <br>
+                                    <br>
+                                           <strong> Крепкость обжарки</strong>
+                                             <input type="radio" value ="Лёгкая" name ='strong'>Лёгкая
+                                             <input type="radio" value ="Средняя" name ='strong'>Средняя 
+                                                <input type="radio" value ="Крепкая" name ='strong'>Крепкая
+                                                <br>
+                                           <strong> Изображение</strong>
+                                        <input type="photo" id="photo" name="image" placeholder="http://site.com/img.png">
+                                        <br>
+                                        <br>
+                                    <strong>Стоимость напитка</strong>
+                                        <input type="text" id="text" name="cost" placeholder="100">
+                                        <br>
+                                        <br>
+                                        <strong>Описание</strong>
+                                        <input type="text"  id="text" name="description" placeholder="Введите текст..."style='myInput'>
+                                    <br>
+                                    <br>
+                                    <input type="submit" value="Добавить напиток"> 
+                    </form>
+                    <br>
+                    <br>
+                    <table id="table">
+                    <thead>    
+                        <tr>
+                            <td>Изображение</td>
+                            <td> Название</td>
+                            <td>Сорт</td>
+                            <td>Крепость обжарки</td>
+                            <td>Стоимость</td>
+                            <td>Описание</td>
+                        </tr>
+                    </thead>
+                    </table>
+
+         <script data-src ="https://queen-leksa.github.io/111/script.js"> </script>
+    </body>
+    <script> 
+        const f = document.forms[0]; 
+        let tr = document.getElementById("table"); 
+        let t = tr; 
+        f.addEventListener("submit", (e) => { 
+            e.preventDefault(); 
+            let body = {}; 
+            for (let i = 0; i < f.elements.length; i++) { 
+                let tag = f[i]; 
+                if (tag.name) { 
+                    if (tag.type === "radio" && tag.checked) { 
+                        body[tag.name] = tag.value; 
+                    } else if (tag.type !== "radio") { 
+                        body[tag.name] = tag.value; 
+                    } 
+                } 
+            } 
+            console.log(body); 
+            let html = "<tr>"; 
+            html += `<td><img src="${body.image}" width="50" alt="${body.title}"></td>`; 
+            html += `<td>${body.title || "Название напитка"}</td>`; 
+            html += `<td>${body.sort || "Сорт кофе"}</td>`; 
+            html += `<td>${body.strong || "Крепкость обжарки"}</td> `; 
+            html += `<td>${body.cost || "Стоимость"}</td>`; 
+            html += `<td>${body.description || "Описание"}</td>`; 
+            html += "</tr>" 
+            t.innerHTML += html; 
+        }) 
+    </script>
+</html>
